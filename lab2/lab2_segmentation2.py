@@ -27,8 +27,11 @@ if __name__ == '__main__':
             mask = mask[1:-1, 1:-1] * 255
 
             mask = cv.morphologyEx(mask, cv.MORPH_CLOSE, cv.getStructuringElement(cv.MORPH_ELLIPSE, (5, 5)))
-
             cv.imshow('mask', mask)
+
+            result = cv.cvtColor(image, cv.COLOR_GRAY2BGR)
+            result[mask != 0] = (0, 0, 255)
+            cv.imshow('result', result)
 
     cv.imshow('image', image)
     cv.setMouseCallback('image', mouse_callback)

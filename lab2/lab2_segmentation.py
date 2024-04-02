@@ -21,6 +21,10 @@ if __name__ == '__main__':
             cv.floodFill(segmentation, mask, (x + 1, y + 1), 255)
             cv.imshow('segmentation', segmentation)
 
+            result = cv.cvtColor(image, cv.COLOR_GRAY2BGR)
+            result[segmentation != 0] = (0, 0, 255)
+            cv.imshow('result', result)
+
     cv.imshow('image', image)
     cv.setMouseCallback('image', mouse_callback)
     cv.waitKey()
